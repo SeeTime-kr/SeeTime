@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SeeTime — 방에 참여하기</title>
+<meta name="description" content="SeeTime 초대 링크로 방에 참여하세요.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #fafafa;
+    color: #1a1a2e;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    max-width: 480px; width: 100%;
+    padding: 48px 24px;
+    text-align: center;
+  }
+  .logo {
+    font-size: 1.8em; font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+    color: #1a1a2e;
+    text-decoration: none; display: inline-block;
+  }
+  .logo-accent { color: #667eea; }
+
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px 32px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+  .card-title {
+    font-size: 1.1em; color: #666;
+    margin-bottom: 28px; line-height: 1.5;
+  }
+
+  .room-code-box {
+    background: #f0f0f5;
+    border: 2px solid #667eea;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 16px rgba(102,126,234,0.12);
+  }
+  .room-code-label {
+    font-size: 0.8em; color: #999;
+    margin-bottom: 8px;
+    text-transform: uppercase; letter-spacing: 2px;
+  }
+  .room-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.4em; font-weight: 700;
+    color: #5448c8;
+    letter-spacing: 6px;
+    user-select: all; word-break: break-all;
+  }
+
+  .btn-copy {
+    width: 100%; padding: 14px;
+    background: #667eea; color: white;
+    border: none; border-radius: 10px;
+    font-family: inherit; font-size: 1.05em; font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 16px rgba(102,126,234,0.2);
+    margin-bottom: 28px;
+  }
+  .btn-copy:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(102,126,234,0.3);
+  }
+  .btn-copy.copied {
+    background: #00c853;
+    box-shadow: 0 4px 16px rgba(0,200,83,0.2);
+  }
+
+  .steps { text-align: left; margin-bottom: 28px; }
+  .step {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 0; font-size: 0.95em;
+    line-height: 1.5; color: #666;
+  }
+  .step-num {
+    flex-shrink: 0; width: 26px; height: 26px;
+    background: #eeeef4; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8em; font-weight: 600; color: #1a1a2e;
+  }
+
+  .btn-cws {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px;
+    background: white; color: #5448c8;
+    border: 2px solid #667eea; border-radius: 10px;
+    font-family: inherit; font-size: 0.95em; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .btn-cws:hover { background: #667eea; color: white; }
+
+  .no-code {
+    color: #666; font-size: 1em;
+    line-height: 1.6; padding: 20px 0;
+  }
+  .no-code a { color: #667eea; text-decoration: none; }
+  .no-code a:hover { text-decoration: underline; }
+
+  .footer {
+    margin-top: 32px; font-size: 0.82em; color: #999;
+  }
+  .footer a { color: #667eea; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 520px) {
+    .container { padding: 24px 16px; }
+    .card { padding: 28px 20px; }
+    .room-code { font-size: 1.8em; letter-spacing: 4px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="../" class="logo">⏱ <span class="logo-accent">See</span>Time</a>
+
+  <div class="card">
+    <div id="has-code" style="display:none;">
+      <p class="card-title">방에 초대받았습니다!</p>
+      <div class="room-code-box">
+        <div class="room-code-label">초대 코드</div>
+        <div class="room-code" id="room-code"></div>
+      </div>
+      <button class="btn-copy" id="copy-btn" onclick="copyCode()">📋 코드 복사하기</button>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><span>SeeTime 확장 프로그램을 설치합니다</span></div>
+        <div class="step"><span class="step-num">2</span><span>OTT 사이트에서 사이드바를 열고 위 코드를 붙여넣기합니다</span></div>
+        <div class="step"><span class="step-num">3</span><span>방에 입장되면 호스트와 함께 시청을 시작하세요!</span></div>
+      </div>
+      <a href="#" id="cws-link" class="btn-cws" onclick="cwsClick(event)">🧩 확장 프로그램 설치하기</a>
+    </div>
+
+    <div id="no-code" style="display:none;">
+      <p class="card-title">⏱ SeeTime</p>
+      <p class="no-code">
+        초대 코드가 포함된 링크가 아닙니다.<br><br>
+        친구에게 초대 링크를 받거나,<br>
+        직접 방을 만들어보세요!
+      </p>
+      <a href="#" class="btn-cws" onclick="cwsClick(event)">🧩 확장 프로그램 설치하기</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="../">SeeTime 홈</a> · <a href="https://discord.gg/wsp7QsuHnb" target="_blank" rel="noopener">디스코드</a> · <a href="../privacy">개인정보처리방침</a>
+  </div>
+</div>
+
+<script>
+  var params = new URLSearchParams(location.search);
+  var roomCode = params.get('room');
+  var validCode = /^[B-DF-HJ-NP-TV-Z2-9]{6,8}$/i;
+  if (roomCode && validCode.test(roomCode)) {
+    roomCode = roomCode.toUpperCase();
+    document.getElementById('room-code').textContent = roomCode;
+    document.getElementById('has-code').style.display = '';
+  } else {
+    document.getElementById('no-code').style.display = '';
+  }
+  function copyCode() {
+    if (!roomCode) return;
+    navigator.clipboard.writeText(roomCode).then(function() {
+      var btn = document.getElementById('copy-btn');
+      btn.textContent = '✅ 복사됨!';
+      btn.classList.add('copied');
+      setTimeout(function() { btn.textContent = '📋 코드 복사하기'; btn.classList.remove('copied'); }, 2000);
+    }).catch(function() { prompt('코드를 복사하세요:', roomCode); });
+  }
+  function cwsClick(e) { e.preventDefault(); alert('Chrome Web Store 등록 준비 중입니다!'); }
+</script>
+</body>
+</html>

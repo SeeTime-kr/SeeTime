@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SeeTime — 개인정보처리방침</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #fafafa;
+    color: #1a1a2e;
+    min-height: 100vh;
+    line-height: 1.7;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+  .logo {
+    font-size: 1.6em; font-weight: 800;
+    margin-bottom: 40px;
+    text-decoration: none; color: #1a1a2e;
+    display: inline-block;
+  }
+  .logo-accent { color: #667eea; }
+  h1 {
+    font-size: 1.8em; font-weight: 800;
+    margin-bottom: 8px; color: #1a1a2e;
+  }
+  .updated {
+    color: #999; font-size: 0.9em;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: 1.15em; font-weight: 600;
+    color: #5448c8;
+    margin-top: 36px; margin-bottom: 12px;
+  }
+  p {
+    color: #555; margin-bottom: 16px;
+  }
+  strong { color: #1a1a2e; }
+  a { color: #667eea; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .footer {
+    margin-top: 60px; padding-top: 20px;
+    border-top: 1px solid #e0e0e8;
+    color: #999; font-size: 0.85em;
+  }
+  @media (max-width: 520px) {
+    .container { padding: 32px 16px; }
+    h1 { font-size: 1.4em; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a href="../" class="logo">⏱ <span class="logo-accent">See</span>Time</a>
+
+  <h1>개인정보처리방침</h1>
+  <p class="updated">최종 수정일: 2026년 3월 22일</p>
+
+  <p>SeeTime(이하 "본 서비스")은 사용자의 개인정보를 중요하게 생각하며, 최소한의 정보만을 수집합니다. 본 방침은 본 서비스가 어떤 정보를 수집하고 어떻게 이용하는지 안내합니다.</p>
+
+  <h2>1. 수집하는 정보</h2>
+  <p><strong>닉네임:</strong> 사용자가 직접 설정하는 표시 이름입니다. 실명이 아닌 임의의 닉네임을 사용합니다.</p>
+  <p><strong>아바타 색상:</strong> 채팅에서 사용자를 구분하기 위한 색상 값입니다.</p>
+  <p><strong>채팅 메시지:</strong> 방 안에서 전송한 메시지는 실시간 동기화를 위해 Firebase에 임시 저장되며, 방이 종료되면 삭제됩니다.</p>
+  <p><strong>타이머 상태:</strong> 동시 시청을 위한 재생 시간 정보가 방 참여 중 동기화됩니다.</p>
+  <p><strong>익명 인증 ID:</strong> Firebase Anonymous Authentication을 통해 생성되는 임시 식별자입니다. 이메일, 전화번호, 이름 등 개인 식별 정보는 수집하지 않습니다.</p>
+
+  <h2>2. 수집하지 않는 정보</h2>
+  <p>본 서비스는 다음 정보를 수집하지 않습니다: 이름, 이메일, 전화번호, 위치 정보, 시청 기록, 브라우저 히스토리, 쿠키, 광고 식별자.</p>
+
+  <h2>3. 정보의 이용 목적</h2>
+  <p>수집된 정보는 오직 동시 시청 기능 제공(채팅, 타이머 동기화, 방 관리)을 위해서만 사용됩니다.</p>
+
+  <h2>4. 정보의 저장 및 삭제</h2>
+  <p>채팅 메시지와 방 데이터는 <strong>Firebase Realtime Database</strong>에 저장되며, 방이 종료되면 자동으로 삭제됩니다. 닉네임과 아바타 색상은 사용자의 브라우저 로컬 저장소(chrome.storage.local)에 저장되며, 확장 프로그램 삭제 시 함께 제거됩니다.</p>
+  <p>본 확장 프로그램은 실시간 동기화를 위해 Firebase 서버(firebasedatabase.app, identitytoolkit.googleapis.com, securetoken.googleapis.com)에 접속합니다.</p>
+
+  <h2>5. 확장 프로그램의 동작 범위</h2>
+  <p>본 확장 프로그램은 동시 시청 기능을 제공하기 위해 지원 플랫폼(넷플릭스, 유튜브, 티빙, 디즈니+, 웨이브, 왓챠, 쿠팡플레이, 라프텔)의 페이지에서 사이드바 UI와 영상 동기화 스크립트를 실행합니다. 이 외의 웹사이트에서는 동작하지 않습니다.</p>
+
+  <h2>6. 제3자 제공</h2>
+  <p>본 서비스는 수집된 정보를 제3자에게 판매, 공유, 제공하지 않습니다. Firebase(Google)가 데이터 호스팅 인프라로 사용되며, Google의 <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">개인정보처리방침</a>이 적용됩니다.</p>
+
+  <h2>7. 아동 보호</h2>
+  <p>본 서비스는 만 14세 미만 아동의 개인정보를 의도적으로 수집하지 않습니다.</p>
+
+  <h2>8. 방침 변경</h2>
+  <p>본 방침이 변경될 경우 이 페이지를 통해 공지합니다.</p>
+
+  <h2>9. 문의</h2>
+  <p>개인정보 관련 문의는 <a href="https://discord.gg/wsp7QsuHnb" target="_blank" rel="noopener">디스코드 서버</a>를 통해 접수할 수 있습니다.</p>
+
+  <div class="footer">
+    <a href="../">SeeTime 홈</a> · <a href="https://discord.gg/wsp7QsuHnb" target="_blank" rel="noopener">디스코드</a>
+  </div>
+</div>
+</body>
+</html>

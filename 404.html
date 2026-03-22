@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+  // GitHub Pages SPA 라우팅: /join/XXXXXX → /join/?room=XXXXXX
+  var path = location.pathname;
+  var base = '/SeeTime';
+  var match = path.match(/\/join\/([B-DF-HJ-NP-TV-Z2-9]{6,8})$/i);
+  if (match) {
+    location.replace(base + '/join/?room=' + match[1].toUpperCase());
+  } else {
+    location.replace(base + '/');
+  }
+</script>
+</head>
+<body></body>
+</html>
